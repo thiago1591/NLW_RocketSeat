@@ -22,8 +22,6 @@ interface Orphanage {
 function OrphanagesMap(){
     const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
 
-    console.log(orphanages);
-
 useEffect(()=>{
     api.get('orphanages').then(response=>{
     setOrphanages(response.data);
@@ -52,14 +50,14 @@ useEffect(()=>{
             style={{ width: '100%', height: '100%' }}
             >
                 <TileLayer url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}/>
-
+                {console.log(orphanages)}
                {orphanages.map(orphanages=>{
+                   {console.log(orphanages.name)}
                    return(
                     <Marker
                     key = {orphanages.id}
                     icon = {mapIcon}
                     position={[orphanages.latitude,orphanages.longitude]}
-
                 >
                     <Popup closeButton={false} minWidth={240} className="map-popup">
                 {orphanages.name}
@@ -73,8 +71,8 @@ useEffect(()=>{
             </Map>
             
 
-            <Link to="/orphanages/1" className="create-orphanage">
-                <FiPlus size={32} color ="#FFF" />
+            <Link to="/orphanages/create" className="create-orphanage">
+                <FiPlus size={43} color ="#FFF" />
             </Link>
         </div>
     )
