@@ -37,7 +37,7 @@ class MessagesService {
         })
 
         return list
-    }
+    }''
 }
 
 export {MessagesService}
